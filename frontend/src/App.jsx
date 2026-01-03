@@ -54,7 +54,7 @@ function App() {
             <Link to="/search">Search Cities</Link>
             <Link to="/activity-search">Search Activities</Link>
             <Link to="/profile">Profile</Link>
-            {user.id === 2 && <Link to="/admin">Admin</Link>}
+            {user.is_admin && <Link to="/admin">Admin</Link>}
             <button onClick={handleLogout} className="btn-secondary btn-small">Logout</button>
           </div>
         ) : (

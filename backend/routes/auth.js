@@ -15,7 +15,7 @@ router.post('/signup', async (req, res) => {
     [name || null, email, hash],
     function (err) {
       if (err) return res.status(400).json({ error: err.message });
-      const user = { id: this.lastID, name, email };
+      const user = { id: this.lastID, name, email, is_admin: 0 };
       const token = jwt.sign(user, JWT_SECRET);
       res.json({ user, token });
     }
@@ -30,7 +30,7 @@ router.post('/login', (req, res) => {
     if (!row) return res.status(401).json({ error: 'invalid credentials' });
     const match = await bcrypt.compare(password, row.password_hash);
     if (!match) return res.status(401).json({ error: 'invalid credentials' });
-    const user = { id: row.id, name: row.name, email: row.email };
+    const user = { id: row.id, name: row.name, email: row.email, is_admin: row.is_admin || 0 };
     const token = jwt.sign(user, JWT_SECRET);
     res.json({ user, token });
   });

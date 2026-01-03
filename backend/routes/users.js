@@ -9,7 +9,7 @@ router.use(authenticate);
 // Get current user's profile
 router.get('/me', (req, res) => {
   const userId = req.userId;
-  db.get(`SELECT id, name, email, created_at FROM users WHERE id = ?`, [userId], (err, row) => {
+  db.get(`SELECT id, name, email, created_at, is_admin FROM users WHERE id = ?`, [userId], (err, row) => {
     if (err) return res.status(500).json({ error: err.message });
     if (!row) return res.status(404).json({ error: 'user not found' });
     res.json(row);
@@ -33,7 +33,7 @@ router.patch('/me', async (req, res) => {
     const sql = `UPDATE users SET ${fields.join(', ')} WHERE id = ?`;
     db.run(sql, values, function(updateErr){
       if (updateErr) return res.status(500).json({ error: updateErr.message });
-      db.get(`SELECT id, name, email, created_at FROM users WHERE id = ?`, [userId], (e, updated) => {
+      db.get(`SELECT id, name, email, created_at, is_admin FROM users WHERE id = ?`, [userId], (e, updated) => {
         if (e) return res.status(500).json({ error: e.message });
         res.json(updated);
       });
