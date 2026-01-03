@@ -69,6 +69,40 @@ db.serialize(() => {
       FOREIGN KEY(activity_id) REFERENCES activities(id) ON DELETE CASCADE
     )
   `);
+
+  // Cities table for search functionality with cost indices and popularity
+  db.run(`
+    CREATE TABLE IF NOT EXISTS cities (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      name TEXT NOT NULL,
+      country TEXT NOT NULL,
+      cost_index REAL DEFAULT 50,
+      popularity INTEGER DEFAULT 0,
+      description TEXT
+    )
+  `);
+
+  // Add transport, accommodation, and meal cost estimates per stop
+  db.run(`
+    CREATE TABLE IF NOT EXISTS stop_costs (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      stop_id INTEGER NOT NULL,
+      transport_cost REAL DEFAULT 0,
+      accommodation_cost_per_night REAL DEFAULT 0,
+      meal_cost_per_day REAL DEFAULT 0,
+      FOREIGN KEY(stop_id) REFERENCES stops(id) ON DELETE CASCADE
+    )
+  `);
+
+  // Add admin flag to users table (migration-safe - ignore error if column exists)
+  db.run(`ALTER TABLE users ADD COLUMN is_admin INTEGER DEFAULT 0`, (err) => {
+    // Ignore error if column already exists
+    if (err && !err.message.includes('duplicate column')) {
+      console.error('Error adding is_admin column:', err.message);
+    }
+  });
 });
+
+module.exports = db;
 
 module.exports = db;

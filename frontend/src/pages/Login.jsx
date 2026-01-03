@@ -39,7 +39,7 @@ export default function Login() {
         if (res && res.token) {
           localStorage.setItem('token', res.token);
           localStorage.setItem('user', JSON.stringify(res.user));
-          navigate('/');
+          window.location.href = '/';
         } else {
           setError(res.error || 'Signup failed');
         }
@@ -57,7 +57,7 @@ export default function Login() {
         if (res && res.token) {
           localStorage.setItem('token', res.token);
           localStorage.setItem('user', JSON.stringify(res.user));
-          navigate('/');
+          window.location.href = '/';
         } else {
           setError(res.error || 'Login failed');
         }
