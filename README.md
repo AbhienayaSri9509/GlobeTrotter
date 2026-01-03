@@ -267,5 +267,3 @@ GlobeTrotter/
 
 ---
 
-✨ *Built as a hackathon-ready project with scalability and real-world usability in mind*
-# GlobeTrotter
