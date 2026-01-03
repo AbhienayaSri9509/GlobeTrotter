@@ -1,1 +1,16 @@
-{ "name": "globetrotter-frontend", "private": true }
+{
+	"name": "globetrotter-frontend",
+	"version": "0.1.0",
+	"private": true,
+	"scripts": {
+		"start": "react-scripts start",
+		"build": "react-scripts build",
+		"test": "react-scripts test"
+	},
+	"dependencies": {
+		"react": "^18.2.0",
+		"react-dom": "^18.2.0",
+		"react-router-dom": "^6.14.1",
+		"react-scripts": "5.0.1"
+	}
+}
