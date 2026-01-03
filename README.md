@@ -123,7 +123,7 @@ This relational structure ensures efficient storage, retrieval, and management o
 
 ### Database
 
-* MySQL / PostgreSQL
+* SQLite (with relational schema)
 
 ### Authentication
 
@@ -168,4 +168,103 @@ GlobeTrotter addresses the challenges of fragmented travel planning by offering 
 
 ---
 
-✨ *Built as a hackathon-ready project with scalability and real-world usability i
+## Setup & Installation
+
+### Prerequisites
+- Node.js (v14 or higher)
+- npm or yarn
+
+### Backend Setup
+
+1. Navigate to the backend directory:
+```bash
+cd backend
+```
+
+2. Install dependencies:
+```bash
+npm install
+```
+
+3. Seed the database with sample data:
+```bash
+npm run seed
+```
+
+4. Start the backend server:
+```bash
+npm start
+# or for development with auto-reload:
+npm run dev
+```
+
+The backend will run on `http://localhost:5000`
+
+### Frontend Setup
+
+1. Navigate to the frontend directory:
+```bash
+cd frontend
+```
+
+2. Install dependencies:
+```bash
+npm install
+```
+
+3. Start the development server:
+```bash
+npm start
+```
+
+The frontend will run on `http://localhost:3000`
+
+### Default Accounts
+
+After seeding the database, you can use:
+
+- **Demo User**: 
+  - Email: `demo@local`
+  - Password: `password`
+
+- **Admin User**:
+  - Email: `admin@local`
+  - Password: `admin`
+
+## Project Structure
+
+```
+GlobeTrotter/
+├── backend/
+│   ├── routes/          # API route handlers
+│   ├── middleware/      # Authentication middleware
+│   ├── db.js           # Database schema and connection
+│   ├── server.js       # Express server setup
+│   └── seed.js         # Database seeding script
+├── frontend/
+│   ├── src/
+│   │   ├── pages/      # React page components
+│   │   ├── components/ # Reusable components
+│   │   ├── api.js      # API client functions
+│   │   └── App.jsx     # Main app component
+│   └── package.json
+└── README.md
+```
+
+## Key Features Implemented
+
+✅ User Authentication (Login/Signup)  
+✅ Dashboard with trip overview  
+✅ Trip Creation and Management  
+✅ Itinerary Builder with city and activity management  
+✅ City Search with filters  
+✅ Activity Search with category filters  
+✅ Budget Calculation with category breakdowns  
+✅ Calendar/Timeline View  
+✅ Public Trip Sharing with social media integration  
+✅ User Profile and Settings  
+✅ Admin Dashboard with analytics  
+
+---
+
+✨ *Built as a hackathon-ready project with scalability and real-world usability in mind*
