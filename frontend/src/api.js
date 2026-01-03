@@ -5,9 +5,31 @@ async function request(path, options = {}) {
   const headers = options.headers || {};
   if (token) headers['Authorization'] = `Bearer ${token}`;
   headers['Content-Type'] = headers['Content-Type'] || 'application/json';
-  const res = await fetch(`${API_ROOT}${path}`, { ...options, headers });
-  const text = await res.text();
-  try { return JSON.parse(text); } catch { return text; }
+  
+  try {
+    const res = await fetch(`${API_ROOT}${path}`, { ...options, headers });
+    const text = await res.text();
+    
+    // Handle non-JSON responses
+    if (!res.ok) {
+      try {
+        const error = JSON.parse(text);
+        throw { error: error.error || 'Request failed', status: res.status };
+      } catch {
+        throw { error: text || `HTTP ${res.status}`, status: res.status };
+      }
+    }
+    
+    try { 
+      return JSON.parse(text); 
+    } catch { 
+      return text; 
+    }
+  } catch (err) {
+    // Network errors or parsing errors
+    if (err.error) throw err;
+    throw { error: err.message || 'Network error', status: 0 };
+  }
 }
 
 export async function login(email, password) {
