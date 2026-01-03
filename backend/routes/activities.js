@@ -5,10 +5,44 @@ const router = express.Router();
 
 // public list of activities (no auth required)
 router.get('/', (req, res) => {
-  db.all(`SELECT * FROM activities ORDER BY city, name`, [], (err, rows) => {
+  const { q, city, category, max_cost } = req.query;
+  let sql = `SELECT * FROM activities WHERE 1=1`;
+  const params = [];
+  
+  if (q) {
+    sql += ` AND (name LIKE ? OR description LIKE ?)`;
+    const searchTerm = `%${q}%`;
+    params.push(searchTerm, searchTerm);
+  }
+  
+  if (city) {
+    sql += ` AND city = ?`;
+    params.push(city);
+  }
+  
+  if (category) {
+    sql += ` AND category = ?`;
+    params.push(category);
+  }
+  
+  if (max_cost) {
+    sql += ` AND cost <= ?`;
+    params.push(parseFloat(max_cost));
+  }
+  
+  sql += ` ORDER BY city, name`;
+  
+  db.all(sql, params, (err, rows) => {
     if (err) return res.status(500).json({ error: err.message });
-    res.json(rows);
+    res.json(rows || []);
   });
+});
+
+// Search endpoint (alias for GET / with query params)
+router.get('/search', (req, res) => {
+  // Redirect to main GET endpoint
+  req.url = '/?' + new URLSearchParams(req.query).toString();
+  router.handle(req, res);
 });
 
 // create activity (admin/dev)

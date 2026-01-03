@@ -59,6 +59,7 @@ router.patch('/:id', (req, res) => {
     if (typeof req.body.start_date !== 'undefined') { fields.push('start_date = ?'); values.push(req.body.start_date); }
     if (typeof req.body.end_date !== 'undefined') { fields.push('end_date = ?'); values.push(req.body.end_date); }
     if (typeof req.body.description !== 'undefined') { fields.push('description = ?'); values.push(req.body.description); }
+    if (typeof req.body.cover_photo !== 'undefined') { fields.push('cover_photo = ?'); values.push(req.body.cover_photo); }
     if (fields.length === 0) return res.status(400).json({ error: 'no updatable fields provided' });
     values.push(id);
     const sql = `UPDATE trips SET ${fields.join(', ')} WHERE id = ?`;
@@ -68,6 +69,20 @@ router.patch('/:id', (req, res) => {
         if (e) return res.status(500).json({ error: e.message });
         res.json(updated);
       });
+    });
+  });
+});
+
+router.delete('/:id', (req, res) => {
+  const id = req.params.id;
+  const userId = req.userId;
+  db.get(`SELECT * FROM trips WHERE id = ?`, [id], (err, trip) => {
+    if (err) return res.status(500).json({ error: err.message });
+    if (!trip) return res.status(404).json({ error: 'trip not found' });
+    if (trip.user_id !== userId) return res.status(403).json({ error: 'forbidden' });
+    db.run(`DELETE FROM trips WHERE id = ?`, [id], function(deleteErr) {
+      if (deleteErr) return res.status(500).json({ error: deleteErr.message });
+      res.json({ success: true });
     });
   });
 });

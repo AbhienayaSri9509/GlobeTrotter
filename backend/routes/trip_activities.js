@@ -29,4 +29,19 @@ router.get('/by-stop/:stopId', (req, res) => {
   });
 });
 
+router.delete('/:id', authenticate, (req, res) => {
+  const tripActivityId = req.params.id;
+  
+  // Verify trip_activity belongs to user's trip
+  db.get(`SELECT t.user_id FROM trip_activities ta JOIN stops s ON ta.stop_id = s.id JOIN trips t ON s.trip_id = t.id WHERE ta.id = ?`, [tripActivityId], (err, row) => {
+    if (err) return res.status(500).json({ error: err.message });
+    if (!row || row.user_id !== req.userId) return res.status(403).json({ error: 'forbidden' });
+    
+    db.run(`DELETE FROM trip_activities WHERE id = ?`, [tripActivityId], function(deleteErr) {
+      if (deleteErr) return res.status(500).json({ error: deleteErr.message });
+      res.json({ success: true });
+    });
+  });
+});
+
 module.exports = router;

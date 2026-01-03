@@ -54,4 +54,80 @@ export async function getPublicTrip(tripId){
   return request(`/public/trips/${tripId}`);
 }
 
+export async function updateTrip(tripId, payload){
+  return request(`/trips/${tripId}`, { method: 'PATCH', body: JSON.stringify(payload) });
+}
+
+export async function deleteTrip(tripId){
+  return request(`/trips/${tripId}`, { method: 'DELETE' });
+}
+
+export async function getStopsByTrip(tripId){
+  return request(`/stops/by-trip/${tripId}`);
+}
+
+export async function updateStop(stopId, payload){
+  return request(`/stops/${stopId}`, { method: 'PATCH', body: JSON.stringify(payload) });
+}
+
+export async function deleteStop(stopId){
+  return request(`/stops/${stopId}`, { method: 'DELETE' });
+}
+
+export async function deleteTripActivity(tripActivityId){
+  return request(`/trip-activities/${tripActivityId}`, { method: 'DELETE' });
+}
+
+export async function searchCities(query, country){
+  const params = new URLSearchParams();
+  if (query) params.append('q', query);
+  if (country) params.append('country', country);
+  return request(`/cities/search?${params.toString()}`);
+}
+
+export async function getCities(){
+  return request('/cities');
+}
+
+export async function getCountries(){
+  return request('/cities/countries');
+}
+
+export async function searchActivities(query, city, category, maxCost){
+  const params = new URLSearchParams();
+  if (query) params.append('q', query);
+  if (city) params.append('city', city);
+  if (category) params.append('category', category);
+  if (maxCost) params.append('max_cost', maxCost);
+  return request(`/activities/search?${params.toString()}`);
+}
+
+export async function getBudget(tripId){
+  return request(`/budget/trip/${tripId}`);
+}
+
+export async function updateStopCosts(stopId, payload){
+  return request(`/budget/stop/${stopId}`, { method: 'POST', body: JSON.stringify(payload) });
+}
+
+export async function getProfile(){
+  return request('/users/me');
+}
+
+export async function updateProfile(payload){
+  return request('/users/me', { method: 'PATCH', body: JSON.stringify(payload) });
+}
+
+export async function deleteAccount(){
+  return request('/users/me', { method: 'DELETE' });
+}
+
+export async function getAdminAnalytics(){
+  return request('/admin/analytics');
+}
+
+export async function getAdminUsers(){
+  return request('/admin/users');
+}
+
 export default { login, signup, getTrips, createTrip, getActivities };
