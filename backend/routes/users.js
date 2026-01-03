@@ -41,4 +41,13 @@ router.patch('/me', async (req, res) => {
   });
 });
 
+// Delete account
+router.delete('/me', (req, res) => {
+  const userId = req.userId;
+  db.run(`DELETE FROM users WHERE id = ?`, [userId], function(deleteErr) {
+    if (deleteErr) return res.status(500).json({ error: deleteErr.message });
+    res.json({ success: true });
+  });
+});
+
 module.exports = router;
