@@ -1,18 +1,18 @@
-# 🌍 GlobeTrotter – Empowering Personalized Travel Planning
+# GlobeTrotter – Empowering Personalized Travel Planning
 
-## 📌 Overview
+## Overview
 
 GlobeTrotter is a personalized, intelligent, and collaborative travel planning application designed to simplify and enhance the way people plan trips. The platform enables users to design multi-city itineraries, manage travel dates and activities, estimate budgets automatically, and share travel plans publicly or with friends. By combining structured planning with an interactive user experience, GlobeTrotter makes travel planning as exciting as the journey itself.
 
 ---
 
-## 🎯 Vision
+## Vision
 
 To transform travel planning into a seamless, enjoyable, and insightful experience by providing an end-to-end digital platform where users can dream, design, organize, and share their trips effortlessly.
 
 ---
 
-## 🚀 Mission
+##  Mission
 
 To build a user-centric and responsive travel planning application that:
 
@@ -23,68 +23,68 @@ To build a user-centric and responsive travel planning application that:
 
 ---
 
-## 🧩 Key Features
+##  Key Features
 
-### 🔐 Authentication
+### Authentication
 
 * Secure Login & Signup
 * Email and password validation
 * Password recovery support
 
-### 🏠 Dashboard
+### Dashboard
 
 * Overview of upcoming trips
 * Quick access to recent itineraries
 * Recommended destinations
 * Budget highlights
 
-### ✈️ Trip Management
+### Trip Management
 
 * Create customized trips with name, dates, and description
 * View, edit, or delete trips
 * Upload optional cover photos
 
-### 🗺️ Itinerary Builder
+### Itinerary Builder
 
 * Add multiple cities (stops) to a trip
 * Assign travel dates per city
 * Add and manage activities for each stop
 * Reorder cities dynamically
 
-### 📅 Itinerary View
+### Itinerary View
 
 * Day-wise or city-wise structured view
 * Calendar or list-based layout
 * Clear visualization of daily plans
 
-### 🔍 City & Activity Discovery
+### City & Activity Discovery
 
 * Search cities by country or region
 * Browse activities by category, cost, and duration
 * Add activities directly to itinerary
 
-### 💰 Budget & Cost Breakdown
+###  Budget & Cost Breakdown
 
 * Automatic cost estimation
 * Category-wise breakdown (transport, stay, activities, meals)
 * Visual charts (pie/bar)
 * Alerts for over-budget days
 
-### 🌐 Shared/Public Itineraries
+###  Shared/Public Itineraries
 
 * Public shareable link
 * Read-only itinerary view
 * Option to copy an existing trip
 * Social media sharing support
 
-### 👤 User Profile & Settings
+### User Profile & Settings
 
 * Update personal details
 * Language preferences
 * Privacy controls
 * Account deletion option
 
-### 🛠️ Admin Dashboard (Optional/Future Scope)
+### Admin Dashboard (Optional/Future Scope)
 
 * User and trip analytics
 * Popular destinations and activities
@@ -92,7 +92,7 @@ To build a user-centric and responsive travel planning application that:
 
 ---
 
-## 🗄️ Database Design (Relational)
+## Database Design (Relational)
 
 **Core Tables:**
 
@@ -107,7 +107,7 @@ This relational structure ensures efficient storage, retrieval, and management o
 
 ---
 
-## 🏗️ Tech Stack
+## Tech Stack
 
 ### Frontend
 
@@ -131,7 +131,7 @@ This relational structure ensures efficient storage, retrieval, and management o
 
 ---
 
-## 🧪 Application Flow
+## Application Flow
 
 1. User signs up or logs in
 2. User creates a new trip
@@ -142,7 +142,7 @@ This relational structure ensures efficient storage, retrieval, and management o
 
 ---
 
-## 🌟 Highlights
+## Highlights
 
 * End-to-end trip planning
 * Clean and intuitive UI
@@ -152,7 +152,7 @@ This relational structure ensures efficient storage, retrieval, and management o
 
 ---
 
-## 🔮 Future Enhancements
+## Future Enhancements
 
 * AI-based itinerary recommendations
 * Real-time cost updates
@@ -162,7 +162,7 @@ This relational structure ensures efficient storage, retrieval, and management o
 
 ---
 
-## 🏁 Conclusion
+## Conclusion
 
 GlobeTrotter addresses the challenges of fragmented travel planning by offering a unified, intelligent, and interactive platform. It empowers travelers to plan confidently, stay within budget, and enjoy complete visibility of their journey—making it a strong, scalable solution for modern travel needs.
 
